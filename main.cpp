@@ -1,11 +1,3 @@
-// Author:       Mariana Acosta
-// Assignment:       project 4
-// File:       Tree
-// Instructor:       Reza Sanati
-// Class:       CSIS 2420  Section: 001
-// Date Written:   June 2, 2018
-// Description: get data from file, then construct an avl tree, in order recursevely and pre order non recursevely
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
