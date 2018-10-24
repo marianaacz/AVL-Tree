@@ -1,10 +1,4 @@
-// Author:       Mariana Acosta
-// Assignment:       project 4
-// File:       Tree
-// Instructor:       Reza Sanati
-// Class:       CSIS 2420  Section: 001
-// Date Written:   June 2, 2018
-// Description: get data from file, then construct an avl tree, in order recursevely and pre order non recursevely
+
 
 #include <iostream>
 #include "Tree.h"
@@ -40,12 +34,6 @@ TreeNode* Tree::RotateLeft(TreeNode*& n){
   return child;
 }
 
-// Function Name:    RotateRight
-// Purpose:       rotate the data to balance it out 
-// Parameters:       TreeNode*& n
-// Returns:       child
-// Pre-conditions:   none
-// Post-conditions:none
 TreeNode* Tree::RotateRight(TreeNode*& n){
   TreeNode* child = n->left;
   n->left = child->right;
@@ -56,12 +44,7 @@ TreeNode* Tree::RotateRight(TreeNode*& n){
   return child;
 }
 
-// Function Name:    RotateLeftRight
-// Purpose:       rotate the date to balance it out 
-// Parameters:       TreeNode*& n
-// Returns:       child
-// Pre-conditions:   none
-// Post-conditions:none
+
 TreeNode* Tree::RotateLeftRight(TreeNode*& n){
   TreeNode* child = n->left;
   n->left = RotateLeft(child);
@@ -71,12 +54,6 @@ TreeNode* Tree::RotateLeftRight(TreeNode*& n){
   return RotateRight(n);
 }
 
-// Function Name:    RotateRightLeft
-// Purpose:       rotate the date to balance it out 
-// Parameters:       TreeNode*& n
-// Returns:       child
-// Pre-conditions:   none
-// Post-conditions:none
 TreeNode* Tree::RotateRightLeft(TreeNode*& n){
   TreeNode* child = n->right;
   n->right = RotateRight(child);
@@ -86,13 +63,6 @@ TreeNode* Tree::RotateRightLeft(TreeNode*& n){
   return RotateLeft(n);
 }
 
-// Function Name:    DataIn
-// Purpose:       insert the data and accomodate it  
-// Parameters:       TreeNode*& head, and int data 
-// Returns:      none
-// Pre-conditions:   if there are two equal numbers ignore one, 
-// if the head is null new node is the head, if there is a head and it is bigger put it to the right if it is less put it to the right
-// Post-conditions:none
 void Tree::DataIn(TreeNode*& head, int data) {
   //if there are two equal numbers ignore one
         if (head != nullptr && data == head->value){
@@ -123,12 +93,6 @@ void Tree::DataIn(TreeNode*& head, int data) {
 
 }
 
-// Function Name:    Balance
-// Purpose:       see the height check the difference and balance it out if needed 
-// Parameters:       TreeNode*& n
-// Returns:      none
-// Pre-conditions:   if the height is more than one there are two options, if heightDifference is more than 0 rotate it right, else then RotateLeftRight, if heightDifference is less than -1 two options again, if it is less than 0 RotateLeft if not RotateRightLeft
-// Post-conditions:none
 void Tree::Balance(TreeNode*& n){
   int heightDifference = checkDifference(n);
   //if it is more than one then put it to the left 
@@ -150,18 +114,12 @@ void Tree::Balance(TreeNode*& n){
     if (heightDifference < 0){
       n = RotateLeft(n);
     }
-    //else RotateRightLeft
     else {
       n = RotateRightLeft(n);
     }
   }
 }
-// Function Name:    updateHeight
-// Purpose:       updates the height of the tree 
-// Parameters:       TreeNode*& n
-// Returns:       0 or the max 
-// Pre-conditions:   if n is null then return 0, else max takes the updateHeight of left and right plus one 
-// Post-conditions:none
+
 int Tree::updateHeight(TreeNode* n){
   if (n==nullptr){ //base case 
     return 0;
@@ -170,13 +128,6 @@ int Tree::updateHeight(TreeNode* n){
     return max(updateHeight(n->left), updateHeight(n->right))+1;
   }
 }
-
-// Function Name:    max
-// Purpose:       see the max height 
-// Parameters:      int left_height, int right_height
-// Returns:      left_height or  right_height
-// Pre-conditions:   if the left heightis bigger than the right one return the left one, else return the right one 
-// Post-conditions:none
 int Tree::max(int left_height, int right_height){
   if(left_height > right_height){
     return left_height;
@@ -186,12 +137,6 @@ int Tree::max(int left_height, int right_height){
   }
 }
 
-// Function Name:    InOrder
-// Purpose:      if left is null then go left, and output the value, if right is null, go right 
-// Parameters:      TreeNode* head
-// Returns:      none
-// Pre-conditions:  if left or right are null 
-// Post-conditions:none
 void Tree::InOrder(TreeNode* head){ //recursevely
   if(head->left != nullptr){
     InOrder(head->left);
@@ -202,12 +147,6 @@ void Tree::InOrder(TreeNode* head){ //recursevely
   }
 }
 
-// Function Name:    checkDifference
-// Purpose:     see the difference between heights to see if it is balanced or not 
-// Parameters:      TreeNode* n
-// Returns:      the heights or 0 
-// Pre-conditions:  if both are null then return the difference, if one is bigger return the heights 
-// Post-conditions:none
 int Tree::checkDifference(TreeNode* n){
   if(n->left != nullptr && n->right != nullptr){
     return (n->left->height) - (n->right->height);
@@ -223,12 +162,6 @@ int Tree::checkDifference(TreeNode* n){
   }
 }
 
-// Function Name:    PreOrder
-// Purpose:    order it in pre order form 
-// Parameters:      TreeNode* head
-// Returns:      the heights or 0 
-// Pre-conditions:  if the head is null then do everything 
-// Post-conditions:none
 void Tree::PreOrder(TreeNode* head){
   if (head == nullptr)
     return;
