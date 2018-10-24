@@ -32,8 +32,3 @@ class Tree {
 };
 
 #endif
-
-/*Tree(int data, Tree *next){
-    this->data = data;
-    this->left = left;
-    this->right = right;*/
